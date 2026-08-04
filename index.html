@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Crazy Indian Parv - Make New Invention">
+<title>Crazy Indian Parv | Make New Invention</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#050505;color:#fff;font-family:Arial,Helvetica,sans-serif;overflow-x:hidden}
+a{text-decoration:none;color:inherit}.container{width:92%;max-width:1200px;margin:auto}
+header{position:fixed;top:0;left:0;right:0;z-index:99;background:rgba(5,5,5,.92);backdrop-filter:blur(14px);border-bottom:1px solid #ffd21c2b}
+.navbar{height:82px;display:flex;align-items:center;gap:24px}.logo-small{width:62px;height:62px}
+.logo-small img{width:100%;height:100%;object-fit:cover;border-radius:50%;filter:drop-shadow(0 0 10px #ffd21ccc)}
+.nav{margin-left:auto;display:flex;gap:27px}.nav a{font-weight:700;color:#ddd}.nav a:hover{color:#ffd21c}
+.subscribe,.btn-yellow{background:#ffd21c;color:#050505;font-weight:900;border-radius:9px}
+.subscribe{padding:11px 17px}.menu{display:none;background:none;border:0;color:#ffd21c;font-size:30px}
+.hero{min-height:100vh;padding:145px 0 90px;display:flex;align-items:center;background:radial-gradient(circle at 75% 38%,#ffd21c29,transparent 28%),#050505}
+.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:60px;align-items:center}
+.badge{display:inline-block;padding:8px 15px;border:1px solid #ffd21c59;border-radius:30px;color:#ffd21c;font-size:12px;font-weight:900;letter-spacing:1.5px;background:#ffd21c0d;margin-bottom:22px}
+h1{font-size:clamp(3.5rem,8vw,7.2rem);line-height:.86;letter-spacing:-6px}h1 span{display:block;color:#ffd21c;text-shadow:0 0 12px #ffd21ccc,0 0 38px #ffd21c40}
+.hero-text{max-width:650px;color:#aaa;font-size:18px;margin:28px 0 30px}.buttons{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;padding:14px 20px;border-radius:9px;font-weight:900;transition:.25s}.btn-yellow{padding:14px 20px}.btn:hover{transform:translateY(-3px);box-shadow:0 0 22px #ffd21c66}
+.btn-outline{border:1px solid #ffd21c66;color:#ffd21c}.btn-outline:hover{background:#ffd21c12}
+.logo-stage{min-height:500px;border:1px solid #ffd21c38;border-radius:30px;background:radial-gradient(circle,#ffd21c21,transparent 45%),#090909;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.logo-stage:before{content:"";position:absolute;width:330px;height:330px;border-radius:50%;border:1px solid #ffd21c1f;box-shadow:0 0 70px #ffd21c14}
+.hero-logo{position:relative;width:min(350px,72vw);aspect-ratio:1;object-fit:cover;border-radius:50%;filter:drop-shadow(0 0 16px #ffd21ccc);animation:float 4s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-8px)}}.logo-name{position:relative;margin-top:20px;color:#ffd21c;font-size:22px;font-weight:900}.logo-tag{position:relative;color:#888;font-size:11px;letter-spacing:3px}
+section{padding:95px 0}.section-title{font-size:clamp(2rem,5vw,3.5rem);line-height:1.05}.section-title:after{content:"";display:block;width:62px;height:4px;background:#ffd21c;margin-top:14px;box-shadow:0 0 14px #ffd21ccc}.section-text{color:#999;margin:16px 0 35px}
+
+/* UPGRADED VIDEO CARDS */
+.video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.video-card{background:#0b0b0b;border:1px solid #ffffff12;border-radius:18px;overflow:hidden;transition:.3s}
+.video-card:hover{transform:translateY(-7px);border-color:#ffd21c59;box-shadow:0 18px 40px #000,0 0 25px #ffd21c12}
+.video-thumb{height:205px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;background:radial-gradient(circle at 50% 45%,#ffd21c35,transparent 38%),linear-gradient(135deg,#171717,#070707)}
+.video-thumb:before{content:"";position:absolute;width:170px;height:170px;border:1px solid #ffd21c30;border-radius:50%;box-shadow:0 0 55px #ffd21c18}
+.video-thumb .thumb-label{position:absolute;top:14px;left:14px;background:#ffd21c;color:#050505;padding:6px 9px;border-radius:6px;font-size:11px;font-weight:900}
+.play{position:relative;width:64px;height:64px;border-radius:50%;background:#ffd21c;color:#050505;display:grid;place-items:center;font-size:25px;padding-left:4px;box-shadow:0 0 25px #ffd21c88}
+.video-info{padding:22px}.video-info h3{font-size:20px;margin-bottom:9px}.video-info p{color:#999;line-height:1.55}.video-link{display:inline-block;margin-top:17px;color:#ffd21c;font-weight:900}
+.video-note{margin-top:24px;padding:14px 16px;border-left:3px solid #ffd21c;background:#ffd21c0a;color:#999;border-radius:6px}
+
+/* OTHER SECTIONS */
+.about{background:#090909}.about-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:65px;align-items:center}.about-logo{display:flex;justify-content:center}.about-logo img{width:min(350px,80vw);aspect-ratio:1;object-fit:cover;border-radius:50%;filter:drop-shadow(0 0 17px #ffd21ca6)}.about p{color:#aaa;margin:20px 0}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.card{padding:28px;border-radius:18px;background:linear-gradient(145deg,#121212,#0a0a0a);border:1px solid #ffffff14;min-height:205px;transition:.3s}.card:hover{transform:translateY(-7px);border-color:#ffd21c52;box-shadow:0 15px 35px #00000066}.card-number{color:#ffd21c;font-size:12px;font-weight:900;letter-spacing:2px;margin-bottom:15px}.card h3{font-size:21px;margin-bottom:10px}.card p{color:#999}.card-link{display:inline-block;color:#ffd21c;font-weight:800;margin-top:20px}
+.cta{text-align:center;padding:75px 20px;border-radius:28px;border:1px solid #ffd21c38;background:radial-gradient(circle,#ffd21c1f,transparent 55%),#0a0a0a}.cta p{color:#aaa;margin:15px 0 26px}
+footer{border-top:1px solid #ffffff14;padding:35px 0;color:#888}.footer{display:flex;justify-content:space-between;gap:20px}.footer a{color:#ffd21c}
+@media(max-width:850px){.navbar{height:72px}.logo-small{width:56px;height:56px}.nav{display:none}.nav.open{display:flex;position:absolute;top:72px;left:0;right:0;padding:14px 5%;flex-direction:column;gap:0;background:#080808;border-bottom:1px solid #ffd21c33}.nav.open a{padding:11px 0}.subscribe{display:none}.menu{display:block;margin-left:auto}.hero{padding-top:125px}.hero-grid,.about-grid{grid-template-columns:1fr}.video-grid,.cards{grid-template-columns:1fr}.logo-stage{min-height:410px}.footer{flex-direction:column;text-align:center}}
+
+/* UPGRADED SHORTS */
+.shorts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.short-card{background:#0b0b0b;border:1px solid #ffffff12;border-radius:18px;overflow:hidden;transition:.3s}
+.short-card:hover{transform:translateY(-7px);border-color:#ffd21c59;box-shadow:0 18px 40px #000,0 0 25px #ffd21c12}
+.short-visual{height:300px;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;background:radial-gradient(circle at 50% 43%,#ffd21c38,transparent 30%),linear-gradient(145deg,#171717,#070707)}
+.short-visual:before{content:"";position:absolute;width:210px;height:210px;border:1px solid #ffd21c2d;border-radius:50%;box-shadow:0 0 65px #ffd21c18}
+.short-visual span{position:absolute;top:15px;left:15px;color:#ffd21c;font-size:11px;font-weight:900;letter-spacing:1px}
+.short-visual strong{position:relative;margin-top:18px;font-size:12px;letter-spacing:3px;color:#aaa}
+.short-play{position:relative;width:68px;height:68px;border-radius:50%;background:#ffd21c;color:#050505;display:grid;place-items:center;padding-left:4px;font-size:26px;box-shadow:0 0 28px #ffd21c88;transition:.25s}
+.short-play:hover{transform:scale(1.08);box-shadow:0 0 40px #ffd21ccc}
+.short-info{padding:22px}.short-info h3{font-size:20px;margin-bottom:9px}.short-info p{color:#999;line-height:1.55}
+.short-btn{display:inline-block;margin-top:17px;padding:11px 14px;border:1px solid #ffd21c55;border-radius:8px;color:#ffd21c;font-weight:900}
+.short-btn:hover{background:#ffd21c;color:#050505}
+@media(max-width:850px){.shorts-grid{grid-template-columns:1fr}}
+
+/* CONTACT SECTION */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:55px;align-items:center}
+.contact-intro{max-width:560px;color:#aaa;font-size:17px;line-height:1.7;margin:22px 0 28px}
+.contact-actions{display:flex;gap:12px;flex-wrap:wrap}
+.contact-box{padding:10px 25px;border:1px solid #ffd21c38;border-radius:22px;background:radial-gradient(circle at 50% 0,#ffd21c12,transparent 55%),#0a0a0a}
+.contact-row{display:flex;gap:17px;align-items:center;padding:23px 0;border-bottom:1px solid #ffffff10}
+.contact-row:last-child{border-bottom:0}
+.contact-icon{width:48px;height:48px;flex:none;display:grid;place-items:center;border-radius:12px;background:#ffd21c;color:#050505;font-weight:900}
+.contact-row div{display:flex;flex-direction:column;gap:5px}
+.contact-row small{font-size:10px;letter-spacing:2px;color:#ffd21c;font-weight:900}
+.contact-row strong{font-size:17px}
+.contact-row a{color:#999;font-size:13px;font-weight:800}
+.contact-row a:hover{color:#ffd21c}
+@media(max-width:850px){.contact-grid{grid-template-columns:1fr}.contact-box{padding:5px 18px}}
+</style>
+</head>
+<body>
+<header><div class="container navbar">
+<a class="logo-small" href="#home"><img src="logo.jpeg" alt="Crazy Indian Parv Logo"></a>
+<nav class="nav" id="nav"><a href="#home">Home</a><a href="#videos">Videos</a><a href="#about">About</a><a href="#shorts">Shorts</a><a href="#contact">Contact</a></nav>
+<a class="subscribe" href="https://www.youtube.com/@crazyindianparv?sub_confirmation=1" target="_blank" rel="noopener">▶ Subscribe</a>
+<button class="menu" id="menu" type="button">☰</button>
+</div></header>
+
+<main>
+<section class="hero" id="home"><div class="container hero-grid">
+<div><div class="badge">MAKE NEW INVENTION</div><h1>CRAZY<span>INDIAN PARV</span></h1>
+<p class="hero-text">Welcome to the official Crazy Indian Parv website. Discover inventions, experiments, DIY projects and practical ideas.</p>
+<div class="buttons"><a class="btn btn-yellow" href="https://www.youtube.com/@crazyindianparv" target="_blank" rel="noopener">▶ Watch on YouTube</a><a class="btn btn-outline" href="#videos">Explore Videos ↓</a></div></div>
+<div class="logo-stage"><img class="hero-logo" src="logo.jpeg" alt="Crazy Indian Parv"><div class="logo-name">CRAZY INDIAN PARV</div><div class="logo-tag">MAKE NEW INVENTION</div></div>
+</div></section>
+
+<section id="videos"><div class="container">
+<h2 class="section-title">Latest Videos</h2>
+<p class="section-text">A visual home for your Crazy Indian Parv videos. YouTube API can be connected later without changing this design.</p>
+<div class="video-grid">
+<article class="video-card">
+<div class="video-thumb"><span class="thumb-label">01 / EXPERIMENT</span><a class="play" href="https://www.youtube.com/@crazyindianparv/videos" target="_blank" rel="noopener" aria-label="Watch Crazy Indian Parv videos">▶</a></div>
+<div class="video-info"><h3>ERV System Ventilation</h3><p>Energy recovery and ventilation experiment.</p><a class="video-link" href="https://www.youtube.com/@crazyindianparv/videos" target="_blank" rel="noopener">Watch on YouTube →</a></div>
+</article>
+<article class="video-card">
+<div class="video-thumb"><span class="thumb-label">02 / DIY</span><a class="play" href="https://www.youtube.com/@crazyindianparv/videos" target="_blank" rel="noopener" aria-label="Watch Crazy Indian Parv videos">▶</a></div>
+<div class="video-info"><h3>Homemade Kitchen Chimney</h3><p>A practical DIY experiment and build.</p><a class="video-link" href="https://www.youtube.com/@crazyindianparv/videos" target="_blank" rel="noopener">Watch on YouTube →</a></div>
+</article>
+<article class="video-card">
+<div class="video-thumb"><span class="thumb-label">03 / REPAIR</span><a class="play" href="https://www.youtube.com/@crazyindianparv/videos" target="_blank" rel="noopener" aria-label="Watch Crazy Indian Parv videos">▶</a></div>
+<div class="video-info"><h3>Potential Meter Repair</h3><p>DC to DC power supply experiment.</p><a class="video-link" href="https://www.youtube.com/@crazyindianparv/videos" target="_blank" rel="noopener">Watch on YouTube →</a></div>
+</article>
+</div>
+<div class="video-note">These are design-ready cards. We have not invented video IDs or fake thumbnails. When we add YouTube API later, the real videos can appear here automatically.</div>
+</div></section>
+
+<section class="about" id="about"><div class="container about-grid"><div class="about-logo"><img src="logo.jpeg" alt="Crazy Indian Parv Logo"></div><div><div class="badge">ABOUT THE CHANNEL</div><h2 class="section-title">MAKE. TEST. INVENT.</h2><p>Crazy Indian Parv is focused on inventions, experiments, electronics, DIY builds and useful ideas.</p><p>The goal is simple: try something new, learn from the experiment and share the result.</p><a class="btn btn-yellow" href="https://www.youtube.com/@crazyindianparv" target="_blank" rel="noopener">Visit YouTube Channel</a></div></div></section>
+
+<section id="shorts"><div class="container">
+<h2 class="section-title">YouTube Shorts</h2>
+<p class="section-text">Quick experiments, ideas and interesting moments from Crazy Indian Parv.</p>
+<div class="shorts-grid">
+<article class="short-card">
+<div class="short-visual"><span>SHORTS / 01</span><a class="short-play" href="https://www.youtube.com/@crazyindianparv/shorts" target="_blank" rel="noopener" aria-label="Watch Crazy Indian Parv Shorts">▶</a><strong>EXPERIMENTS</strong></div>
+<div class="short-info"><h3>Experiments</h3><p>Quick experiment clips and interesting results.</p><a class="short-btn" href="https://www.youtube.com/@crazyindianparv/shorts" target="_blank" rel="noopener">▶ Watch Shorts</a></div>
+</article>
+<article class="short-card">
+<div class="short-visual"><span>SHORTS / 02</span><a class="short-play" href="https://www.youtube.com/@crazyindianparv/shorts" target="_blank" rel="noopener" aria-label="Watch Crazy Indian Parv Shorts">▶</a><strong>DIY IDEAS</strong></div>
+<div class="short-info"><h3>DIY Ideas</h3><p>Short practical ideas, builds and useful tips.</p><a class="short-btn" href="https://www.youtube.com/@crazyindianparv/shorts" target="_blank" rel="noopener">▶ Watch Shorts</a></div>
+</article>
+<article class="short-card">
+<div class="short-visual"><span>SHORTS / 03</span><a class="short-play" href="https://www.youtube.com/@crazyindianparv/shorts" target="_blank" rel="noopener" aria-label="Watch Crazy Indian Parv Shorts">▶</a><strong>INVENTIONS</strong></div>
+<div class="short-info"><h3>New Inventions</h3><p>Explore quick clips from the world of new inventions.</p><a class="short-btn" href="https://www.youtube.com/@crazyindianparv/shorts" target="_blank" rel="noopener">▶ Watch Shorts</a></div>
+</article>
+</div>
+<div class="video-note">These Shorts cards are ready for real YouTube content. We will connect the YouTube API later so actual Shorts can load automatically.</div>
+</div></section>
+
+<section id="contact"><div class="container">
+<div class="contact-grid">
+<div>
+<div class="badge">GET IN TOUCH</div>
+<h2 class="section-title">LET'S CONNECT.</h2>
+<p class="contact-intro">Have an idea, question or feedback about Crazy Indian Parv? Connect through the official YouTube channel.</p>
+<div class="contact-actions">
+<a class="btn btn-yellow" href="https://www.youtube.com/@crazyindianparv" target="_blank" rel="noopener">▶ Open YouTube Channel</a>
+<a class="btn btn-outline" href="https://www.youtube.com/@crazyindianparv/videos" target="_blank" rel="noopener">🎬 Watch Videos</a>
+</div>
+</div>
+<div class="contact-box">
+<div class="contact-row"><span class="contact-icon">▶</span><div><small>YOUTUBE</small><strong>Crazy Indian Parv</strong><a href="https://www.youtube.com/@crazyindianparv" target="_blank" rel="noopener">Visit Channel →</a></div></div>
+<div class="contact-row"><span class="contact-icon">🎬</span><div><small>VIDEOS</small><strong>Experiments & Inventions</strong><a href="https://www.youtube.com/@crazyindianparv/videos" target="_blank" rel="noopener">View Videos →</a></div></div>
+<div class="contact-row"><span class="contact-icon">⚡</span><div><small>SHORTS</small><strong>Quick Ideas & Builds</strong><a href="https://www.youtube.com/@crazyindianparv/shorts" target="_blank" rel="noopener">View Shorts →</a></div></div>
+</div>
+</div>
+</div></section>
+</main>
+<footer><div class="container footer"><div>© <span id="year"></span> Crazy Indian Parv</div><a href="https://www.youtube.com/@crazyindianparv" target="_blank" rel="noopener">YouTube</a></div></footer>
+<script>
+document.getElementById("year").textContent=new Date().getFullYear();
+const menu=document.getElementById("menu"),nav=document.getElementById("nav");
+menu.onclick=()=>{nav.classList.toggle("open");menu.textContent=nav.classList.contains("open")?"✕":"☰"};
+nav.querySelectorAll("a").forEach(a=>a.onclick=()=>{nav.classList.remove("open");menu.textContent="☰"});
+</script>
+</body>
+</html>
