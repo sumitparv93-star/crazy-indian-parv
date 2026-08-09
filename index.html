@@ -1,730 +1,1425 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <meta name="description"
-          content="Crazy Indian Parv — inventions, experiments, DIY projects and practical ideas.">
-
-    <meta name="keywords"
-          content="Crazy Indian Parv, inventions, experiments, DIY projects, practical ideas, YouTube">
-
-    <meta name="author"
-          content="Crazy Indian Parv">
-
-    <meta name="robots"
-          content="index, follow">
-
-    <meta property="og:title"
-          content="Crazy Indian Parv | Make New Invention">
-
-    <meta property="og:description"
-          content="Discover inventions, experiments, DIY projects and practical ideas from Crazy Indian Parv.">
-
-    <meta property="og:type"
-          content="website">
-
-    <title>Crazy Indian Parv | Make New Invention</title>
-
-    <style>
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background: #050505;
-            color: #ffffff;
-            font-family: Arial, Helvetica, sans-serif;
-            line-height: 1.6;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        .container {
-            width: min(1200px, 92%);
-            margin: auto;
-        }
-
-        /* =========================
-           HEADER
-        ========================= */
-
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background: rgba(5, 5, 5, 0.96);
-            border-bottom: 1px solid #242424;
-            backdrop-filter: blur(10px);
-        }
-
-        .navbar {
-            min-height: 82px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 25px;
-        }
-
-        .logo {
-            width: 92px;
-            height: 65px;
-            object-fit: contain;
-            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.35));
-        }
-
-        nav {
-            display: flex;
-            align-items: center;
-            gap: 28px;
-        }
-
-        nav a {
-            color: #ffffff;
-            font-weight: 700;
-            transition: 0.25s;
-        }
-
-        nav a:hover {
-            color: #ffd000;
-        }
-
-        .subscribe-btn {
-            background: #ffd000;
-            color: #080808;
-            padding: 13px 22px;
-            border-radius: 10px;
-            font-weight: 800;
-            display: inline-block;
-            transition: 0.25s;
-            box-shadow: 0 0 18px rgba(255, 208, 0, 0.18);
-        }
-
-        .subscribe-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 25px rgba(255, 208, 0, 0.45);
-        }
-
-        /* =========================
-           HERO
-        ========================= */
-
-        .hero {
-            padding: 90px 0 70px;
-            min-height: 620px;
-            display: flex;
-            align-items: center;
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .badge {
-            display: inline-block;
-            border: 1px solid #ffd000;
-            color: #ffd000;
-            padding: 7px 14px;
-            border-radius: 30px;
-            font-size: 14px;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-
-        .hero h1 {
-            font-size: clamp(42px, 6vw, 78px);
-            line-height: 1.02;
-            margin-bottom: 22px;
-        }
-
-        .hero h1 span {
-            color: #ffd000;
-            text-shadow: 0 0 20px rgba(255, 208, 0, 0.25);
-        }
-
-        .hero p {
-            color: #cfcfcf;
-            font-size: 19px;
-            max-width: 650px;
-            margin-bottom: 30px;
-        }
-
-        .hero-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 14px;
-        }
-
-        .youtube-btn {
-            background: #ffd000;
-            color: #080808;
-            padding: 15px 22px;
-            border-radius: 10px;
-            font-weight: 800;
-            display: inline-block;
-        }
-
-        .explore-btn {
-            border: 1px solid #ffd000;
-            color: #ffd000;
-            padding: 14px 22px;
-            border-radius: 10px;
-            font-weight: 800;
-            display: inline-block;
-        }
-
-        .hero-logo-box {
-            min-height: 390px;
-            border: 1px solid #3b3b3b;
-            border-radius: 22px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background:
-                radial-gradient(
-                    circle,
-                    rgba(255, 208, 0, 0.13),
-                    rgba(0, 0, 0, 0.15) 55%
-                );
-            box-shadow:
-                0 0 30px rgba(255, 208, 0, 0.08),
-                inset 0 0 40px rgba(255, 208, 0, 0.03);
-        }
-
-        .hero-logo {
-            width: min(370px, 85%);
-            max-height: 350px;
-            object-fit: contain;
-            filter: drop-shadow(0 0 25px rgba(255, 208, 0, 0.35));
-        }
-
-        /* =========================
-           SECTION
-        ========================= */
-
-        section {
-            padding: 85px 0;
-        }
-
-        .section-title {
-            font-size: clamp(32px, 5vw, 52px);
-            margin-bottom: 12px;
-        }
-
-        .section-title span {
-            color: #ffd000;
-        }
-
-        .section-line {
-            width: 65px;
-            height: 5px;
-            background: #ffd000;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            box-shadow: 0 0 14px rgba(255, 208, 0, 0.4);
-        }
-
-        .section-description {
-            color: #bdbdbd;
-            margin-bottom: 35px;
-            font-size: 17px;
-        }
-
-        /* =========================
-           VIDEOS
-        ========================= */
-
-        .videos-section {
-            background:
-                linear-gradient(
-                    180deg,
-                    #050505 0%,
-                    #0a0a0a 50%,
-                    #050505 100%
-                );
-        }
-
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-        }
-
-        .video-card {
-            background: #101010;
-            border: 1px solid #303030;
-            border-radius: 15px;
-            overflow: hidden;
-            transition: 0.3s;
-        }
-
-        .video-card:hover {
-            transform: translateY(-5px);
-            border-color: #ffd000;
-            box-shadow: 0 10px 30px rgba(255, 208, 0, 0.10);
-        }
-
-        .video-thumbnail {
-            height: 210px;
-            background-color: #171717;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .play-button {
-            width: 58px;
-            height: 58px;
-            border-radius: 50%;
-            background: #ffd000;
-            color: #080808;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            padding-left: 3px;
-            box-shadow: 0 0 25px rgba(255, 208, 0, 0.4);
-        }
-
-        .video-info {
-            padding: 20px;
-        }
-
-        .video-info h3 {
-            font-size: 19px;
-            line-height: 1.35;
-            margin-bottom: 10px;
-        }
-
-        .video-info p {
-            color: #aaa;
-            font-size: 14px;
-        }
-
-        .video-api-message {
-            grid-column: 1 / -1;
-            border: 1px solid #ffd000;
-            border-left: 5px solid #ffd000;
-            border-radius: 10px;
-            padding: 25px;
-            text-align: center;
-            color: #ffffff;
-            background: #101010;
-        }
-
-        /* =========================
-           ABOUT
-        ========================= */
-
-        .about-box {
-            border: 1px solid #303030;
-            border-radius: 18px;
-            padding: 35px;
-            background: #0c0c0c;
-        }
-
-        .about-box h3 {
-            color: #ffd000;
-            font-size: 28px;
-            margin-bottom: 15px;
-        }
-
-        .about-box p {
-            color: #c5c5c5;
-            font-size: 17px;
-            max-width: 900px;
-        }
-
-        /* =========================
-           CONTACT
-        ========================= */
-
-        .contact-box {
-            text-align: center;
-            border: 1px solid #303030;
-            border-radius: 18px;
-            padding: 45px 25px;
-            background: #0c0c0c;
-        }
-
-        .contact-box h2 {
-            font-size: 35px;
-            margin-bottom: 12px;
-        }
-
-        .contact-box p {
-            color: #aaa;
-            margin-bottom: 25px;
-        }
-
-        .email-btn {
-            display: inline-block;
-            background: #ffd000;
-            color: #080808;
-            padding: 14px 24px;
-            border-radius: 10px;
-            font-weight: 800;
-        }
-
-        /* =========================
-           FOOTER
-        ========================= */
-
-        footer {
-            border-top: 1px solid #242424;
-            padding: 35px 0;
-            text-align: center;
-            background: #030303;
-        }
-
-        footer p {
-            color: #888;
-            font-size: 14px;
-        }
-
-        footer span {
-            color: #ffd000;
-        }
-
-        /* =========================
-           MOBILE
-        ========================= */
-
-        @media (max-width: 850px) {
-
-            .navbar {
-                min-height: 72px;
-            }
-
-            nav {
-                gap: 12px;
-            }
-
-            nav a:not(.subscribe-btn) {
-                display: none;
-            }
-
-            .subscribe-btn {
-                padding: 10px 15px;
-                font-size: 14px;
-            }
-
-            .hero {
-                padding: 55px 0;
-            }
-
-            .hero-grid {
-                grid-template-columns: 1fr;
-                gap: 35px;
-            }
-
-            .hero-logo-box {
-                min-height: 300px;
-            }
-
-            .video-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .video-thumbnail {
-                height: 220px;
-            }
-
-            section {
-                padding: 60px 0;
-            }
-        }
-
-        @media (max-width: 500px) {
-
-            .container {
-                width: 90%;
-            }
-
-            .logo {
-                width: 75px;
-            }
-
-            .hero h1 {
-                font-size: 42px;
-            }
-
-            .hero p {
-                font-size: 16px;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .youtube-btn,
-            .explore-btn {
-                text-align: center;
-            }
-
-            .about-box {
-                padding: 25px;
-            }
-        }
-
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description" content="Crazy Indian Parv - Make New Invention. Inventions, experiments, DIY projects and practical ideas.">
+<meta name="robots" content="index, follow">
+
+<title>Crazy Indian Parv | Make New Invention</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#050505;
+    color:#fff;
+    line-height:1.5;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+.container{
+    width:92%;
+    max-width:1200px;
+    margin:auto;
+}
+
+
+/* ================= HEADER ================= */
+
+header{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    z-index:100;
+    background:rgba(5,5,5,.96);
+    border-bottom:1px solid #ffd21c33;
+}
+
+.navbar{
+    height:78px;
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.logo-small{
+    width:56px;
+    height:56px;
+    display:block;
+}
+
+.logo-small img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:50%;
+    filter:drop-shadow(0 0 10px #ffd21ccc);
+}
+
+.nav{
+    margin-left:auto;
+    display:flex;
+    align-items:center;
+    gap:25px;
+}
+
+.nav a{
+    font-weight:700;
+    color:#ddd;
+}
+
+.nav a:hover{
+    color:#ffd21c;
+}
+
+.subscribe,
+.btn-yellow{
+    background:#ffd21c;
+    color:#050505;
+    font-weight:900;
+    border-radius:9px;
+}
+
+.subscribe{
+    padding:10px 15px;
+}
+
+.menu{
+    display:none;
+    border:0;
+    background:transparent;
+    color:#ffd21c;
+    font-size:28px;
+}
+
+
+/* ================= HERO ================= */
+
+.hero{
+    min-height:100vh;
+    padding:135px 0 80px;
+    background:
+        radial-gradient(
+            circle at 75% 35%,
+            #ffd21c20,
+            transparent 30%
+        ),
+        #050505;
+
+    display:flex;
+    align-items:center;
+}
+
+.hero-grid{
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:55px;
+    align-items:center;
+}
+
+.badge{
+    display:inline-block;
+    padding:7px 14px;
+    border:1px solid #ffd21c55;
+    border-radius:30px;
+    color:#ffd21c;
+    font-size:11px;
+    font-weight:900;
+    letter-spacing:2px;
+    background:#ffd21c0b;
+    margin-bottom:18px;
+}
+
+h1{
+    font-size:clamp(3.4rem,8vw,7rem);
+    line-height:.88;
+    letter-spacing:-5px;
+}
+
+h1 span{
+    display:block;
+    color:#ffd21c;
+    text-shadow:
+        0 0 14px #ffd21ccc,
+        0 0 35px #ffd21c44;
+}
+
+.hero-text{
+    max-width:650px;
+    color:#aaa;
+    font-size:18px;
+    margin:25px 0 28px;
+}
+
+.buttons{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    display:inline-block;
+    padding:13px 19px;
+    border-radius:9px;
+    font-weight:900;
+}
+
+.btn-yellow{
+    box-shadow:0 0 15px #ffd21c1c;
+}
+
+.btn-outline{
+    border:1px solid #ffd21c66;
+    color:#ffd21c;
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 0 22px #ffd21c44;
+}
+
+.logo-stage{
+    min-height:470px;
+    border:1px solid #ffd21c33;
+    border-radius:28px;
+    background:
+        radial-gradient(
+            circle,
+            #ffd21c1c,
+            transparent 48%
+        ),
+        #090909;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+}
+
+.hero-logo{
+    width:min(340px,72vw);
+    aspect-ratio:1;
+    object-fit:cover;
+    border-radius:50%;
+    filter:drop-shadow(0 0 17px #ffd21ccc);
+}
+
+.logo-name{
+    margin-top:18px;
+    color:#ffd21c;
+    font-size:21px;
+    font-weight:900;
+}
+
+.logo-tag{
+    color:#888;
+    font-size:10px;
+    letter-spacing:3px;
+}
+
+
+/* ================= SECTIONS ================= */
+
+section{
+    padding:90px 0;
+}
+
+.section-title{
+    font-size:clamp(2rem,5vw,3.4rem);
+    line-height:1.05;
+}
+
+.section-title:after{
+    content:"";
+    display:block;
+    width:60px;
+    height:4px;
+    background:#ffd21c;
+    margin-top:14px;
+    box-shadow:0 0 13px #ffd21ccc;
+}
+
+.section-text{
+    color:#999;
+    margin:15px 0 32px;
+}
+
+
+/* ================= YOUTUBE ================= */
+
+.video-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.video-card{
+    background:#0b0b0b;
+    border:1px solid #ffffff12;
+    border-radius:18px;
+    overflow:hidden;
+    transition:.25s;
+}
+
+.video-card:hover{
+    transform:translateY(-6px);
+    border-color:#ffd21c59;
+    box-shadow:
+        0 18px 40px #000,
+        0 0 25px #ffd21c12;
+}
+
+.video-thumbnail{
+    width:100%;
+    height:220px;
+    background:#111 center/cover no-repeat;
+    position:relative;
+}
+
+.video-thumbnail:after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(
+            to top,
+            rgba(0,0,0,.4),
+            transparent 60%
+        );
+}
+
+.play-button{
+    position:absolute;
+    z-index:2;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    width:62px;
+    height:62px;
+    border-radius:50%;
+    background:#ffd21c;
+    color:#050505;
+    display:grid;
+    place-items:center;
+    padding-left:3px;
+    font-size:24px;
+    box-shadow:0 0 27px #ffd21c99;
+}
+
+.video-info{
+    padding:18px 20px 21px;
+}
+
+.video-info h3{
+    font-size:19px;
+    line-height:1.3;
+    margin-bottom:9px;
+}
+
+.video-info p{
+    color:#999;
+    font-size:14px;
+    line-height:1.55;
+}
+
+.video-loading{
+    grid-column:1/-1;
+    padding:35px;
+    text-align:center;
+    color:#ffd21c;
+    border:1px solid #ffd21c33;
+    border-radius:15px;
+    background:#0b0b0b;
+}
+
+.video-note{
+    margin-top:22px;
+    padding:13px 15px;
+    border-left:3px solid #ffd21c;
+    background:#ffd21c0a;
+    color:#999;
+    border-radius:5px;
+}
+
+
+/* ================= ABOUT ================= */
+
+.about{
+    background:#090909;
+}
+
+.about-grid{
+    display:grid;
+    grid-template-columns:.85fr 1.15fr;
+    gap:60px;
+    align-items:center;
+}
+
+.about-logo{
+    text-align:center;
+}
+
+.about-logo img{
+    width:min(330px,80vw);
+    aspect-ratio:1;
+    object-fit:cover;
+    border-radius:50%;
+    filter:drop-shadow(0 0 17px #ffd21ca6);
+}
+
+.about p{
+    color:#aaa;
+    margin:18px 0;
+}
+
+
+/* ================= SHORTS ================= */
+
+.shorts-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.short-card{
+    background:#0b0b0b;
+    border:1px solid #ffffff12;
+    border-radius:18px;
+    overflow:hidden;
+}
+
+.short-visual{
+    height:280px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+
+    background:
+        radial-gradient(
+            circle,
+            #ffd21c30,
+            transparent 32%
+        ),
+        #0a0a0a;
+}
+
+.short-visual span{
+    position:absolute;
+    top:15px;
+    left:15px;
+    color:#ffd21c;
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:2px;
+}
+
+.short-play{
+    width:65px;
+    height:65px;
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    background:#ffd21c;
+    color:#050505;
+    font-size:25px;
+    padding-left:3px;
+    box-shadow:0 0 27px #ffd21c88;
+}
+
+.short-info{
+    padding:20px;
+}
+
+.short-info h3{
+    font-size:19px;
+    margin-bottom:8px;
+}
+
+.short-info p{
+    color:#999;
+}
+
+.short-btn{
+    display:inline-block;
+    margin-top:15px;
+    padding:10px 13px;
+    border:1px solid #ffd21c55;
+    border-radius:8px;
+    color:#ffd21c;
+    font-weight:900;
+}
+
+
+/* ================= CTA ================= */
+
+.cta{
+    text-align:center;
+    padding:65px 20px;
+    border:1px solid #ffd21c33;
+    border-radius:25px;
+
+    background:
+        radial-gradient(
+            circle,
+            #ffd21c19,
+            transparent 55%
+        ),
+        #0a0a0a;
+}
+
+.cta p{
+    color:#aaa;
+    margin:14px 0 24px;
+}
+
+
+/* ================= CONTACT ================= */
+
+.contact-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:55px;
+    align-items:center;
+}
+
+.contact-intro{
+    max-width:550px;
+    color:#aaa;
+    font-size:17px;
+    margin:20px 0 27px;
+}
+
+.contact-box{
+    padding:10px 24px;
+    border:1px solid #ffd21c33;
+    border-radius:20px;
+    background:#0a0a0a;
+}
+
+.contact-row{
+    display:flex;
+    gap:16px;
+    align-items:center;
+    padding:20px 0;
+    border-bottom:1px solid #ffffff10;
+}
+
+.contact-row:last-child{
+    border-bottom:0;
+}
+
+.contact-icon{
+    width:46px;
+    height:46px;
+    flex:none;
+    display:grid;
+    place-items:center;
+    border-radius:11px;
+    background:#ffd21c;
+    color:#050505;
+    font-weight:900;
+}
+
+.contact-row div{
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+}
+
+.contact-row small{
+    color:#ffd21c;
+    font-size:10px;
+    letter-spacing:2px;
+    font-weight:900;
+}
+
+.contact-row a{
+    color:#aaa;
+    font-size:13px;
+    font-weight:700;
+}
+
+.contact-row a:hover{
+    color:#ffd21c;
+}
+
+.contact-row .email-address{
+    color:#fff;
+    font-size:16px;
+}
+
+
+/* ================= FOOTER ================= */
+
+footer{
+    border-top:1px solid #ffffff14;
+    padding:30px 0;
+    color:#888;
+}
+
+.footer{
+    display:flex;
+    justify-content:space-between;
+}
+
+.footer a{
+    color:#ffd21c;
+}
+
+
+/* ================= MOBILE ================= */
+
+@media(max-width:850px){
+
+    .nav{
+        display:none;
+    }
+
+    .nav.open{
+        display:flex;
+        position:absolute;
+        top:78px;
+        left:0;
+        right:0;
+        background:#080808;
+        flex-direction:column;
+        align-items:flex-start;
+        padding:15px 5%;
+        gap:0;
+        border-bottom:1px solid #ffd21c33;
+    }
+
+    .nav.open a{
+        padding:10px 0;
+    }
+
+    .menu{
+        display:block;
+    }
+
+    .hero-grid,
+    .about-grid,
+    .contact-grid{
+        grid-template-columns:1fr;
+    }
+
+    .video-grid,
+    .shorts-grid{
+        grid-template-columns:1fr;
+    }
+
+    .logo-stage{
+        min-height:400px;
+    }
+
+    .footer{
+        flex-direction:column;
+        gap:10px;
+        text-align:center;
+    }
+}
+
+</style>
 </head>
+
 
 <body>
 
-    <!-- =========================
-         HEADER
-    ========================== -->
 
-    <header>
+<!-- ================= HEADER ================= -->
 
-        <div class="container navbar">
+<header>
 
-            <a href="#home">
-                <img
-                    src="logo.jpeg"
-                    alt="Crazy Indian Parv Logo"
-                    class="logo">
-            </a>
+<div class="container navbar">
 
-            <nav>
+<a class="logo-small" href="#home">
+<img src="logo.jpeg" alt="Crazy Indian Parv Logo">
+</a>
 
-                <a href="#home">Home</a>
 
-                <a href="#videos">Videos</a>
+<nav class="nav" id="nav">
 
-                <a href="#about">About</a>
+<a href="#home">Home</a>
 
-                <a href="#contact">Contact</a>
+<a href="#videos">Videos</a>
 
-                <a
-                    class="subscribe-btn"
-                    href="https://www.youtube.com/@crazyindianparv?sub_confirmation=1"
-                    target="_blank"
-                    rel="noopener noreferrer">
-                    ▶ Subscribe
-                </a>
+<a href="#about">About</a>
 
-            </nav>
+<a href="#shorts">Shorts</a>
 
-        </div>
+<a href="#contact">Contact</a>
 
-    </header>
+</nav>
 
 
-    <!-- =========================
-         HERO
-    ========================== -->
+<a
+class="subscribe"
+href="https://www.youtube.com/@crazyindianparv?sub_confirmation=1"
+target="_blank"
+rel="noopener"
+>
+▶ Subscribe
+</a>
 
-    <main>
 
-        <section id="home" class="hero">
+<button
+class="menu"
+id="menu"
+type="button"
+>
+☰
+</button>
 
-            <div class="container hero-grid">
+</div>
 
-                <div>
+</header>
 
-                    <div class="badge">
-                        CRAZY INDIAN PARV
-                    </div>
 
-                    <h1>
-                        Make New
-                        <span>Invention</span>
-                    </h1>
 
-                    <p>
-                        Crazy Indian Parv is all about new
-                        inventions, experiments, DIY projects
-                        and practical ideas.
-                    </p>
+<!-- ================= MAIN ================= -->
 
-                    <div class="hero-buttons">
+<main>
 
-                        <a
-                            class="youtube-btn"
-                            href="https://www.youtube.com/@crazyindianparv"
-                            target="_blank"
-                            rel="noopener noreferrer">
-                            ▶ Watch on YouTube
-                        </a>
 
-                        <a
-                            class="explore-btn"
-                            href="#videos">
-                            Explore Videos ↓
-                        </a>
+<!-- ================= HOME ================= -->
 
-                    </div>
+<section
+class="hero"
+id="home"
+>
 
-                </div>
+<div class="container hero-grid">
 
 
-                <div class="hero-logo-box">
+<div>
 
-                    <img
-                        src="logo.jpeg"
-                        alt="Crazy Indian Parv"
-                        class="hero-logo">
+<div class="badge">
+MAKE NEW INVENTION
+</div>
 
-                </div>
 
-            </div>
+<h1>
+CRAZY
+<span>INDIAN PARV</span>
+</h1>
 
-        </section>
 
+<p class="hero-text">
 
-        <!-- =========================
-             VIDEOS
-        ========================== -->
+Welcome to the official Crazy Indian Parv website.
+Discover inventions, experiments, DIY projects and practical ideas.
 
-        <section id="videos" class="videos-section">
+</p>
 
-            <div class="container">
 
-                <h2 class="section-title">
-                    Latest <span>Videos</span>
-                </h2>
+<div class="buttons">
 
-                <div class="section-line"></div>
+<a
+class="btn btn-yellow"
+href="https://www.youtube.com/@crazyindianparv"
+target="_blank"
+rel="noopener"
+>
+▶ Watch on YouTube
+</a>
 
-                <p class="section-description">
-                    Latest 6 normal videos from Crazy Indian Parv.
-                    Shorts are automatically removed.
-                    Real thumbnails, titles and descriptions
-                    are loaded from YouTube.
-                </p>
 
-                <div class="video-grid">
+<a
+class="btn btn-outline"
+href="#videos"
+>
+Explore Videos ↓
+</a>
 
-                    <div class="video-api-message">
-                        Loading YouTube videos...
-                    </div>
+</div>
 
-                </div>
+</div>
 
-            </div>
 
-        </section>
 
+<div class="logo-stage">
 
-        <!-- =========================
-             ABOUT
-        ========================== -->
+<img
+class="hero-logo"
+src="logo.jpeg"
+alt="Crazy Indian Parv"
+>
 
-        <section id="about">
+<div class="logo-name">
+CRAZY INDIAN PARV
+</div>
 
-            <div class="container">
+<div class="logo-tag">
+MAKE NEW INVENTION
+</div>
 
-                <h2 class="section-title">
-                    About <span>Crazy Indian Parv</span>
-                </h2>
+</div>
 
-                <div class="section-line"></div>
 
-                <div class="about-box">
+</div>
 
-                    <h3>
-                        Make New Invention
-                    </h3>
+</section>
 
-                    <p>
-                        Welcome to the official Crazy Indian Parv
-                        website. Here you can discover inventions,
-                        experiments, DIY projects and practical
-                        ideas. New videos and projects will be
-                        added as the channel grows.
-                    </p>
 
-                </div>
 
-            </div>
+<!-- ================= VIDEOS ================= -->
 
-        </section>
+<section id="videos">
 
+<div class="container">
 
-        <!-- =========================
-             CONTACT
-        ========================== -->
 
-        <section id="contact">
+<h2 class="section-title">
+Latest Videos
+</h2>
 
-            <div class="container">
 
-                <div class="contact-box">
+<p class="section-text">
 
-                    <h2>
-                        Contact Crazy Indian Parv
-                    </h2>
+Latest 6 videos from Crazy Indian Parv.
+Real thumbnails, titles and descriptions are loaded automatically from YouTube.
 
-                    <p>
-                        For business, collaboration or other
-                        enquiries, send us an email.
-                    </p>
+</p>
 
-                    <a
-                        class="email-btn"
-                        href="mailto:sumitparv923@gmail.com">
-                        ✉ Email Us
-                    </a>
 
-                </div>
+<div
+class="video-grid"
+id="youtube-videos"
+>
 
-            </div>
+<div class="video-loading">
+Loading latest videos...
+</div>
 
-        </section>
+</div>
 
-    </main>
 
+<div class="video-note">
 
-    <!-- =========================
-         FOOTER
-    ========================== -->
+Click any video thumbnail to open that exact video on YouTube.
 
-    <footer>
+</div>
 
-        <div class="container">
 
-            <p>
-                © 2026
-                <span>Crazy Indian Parv</span>.
-                All Rights Reserved.
-            </p>
+</div>
 
-        </div>
+</section>
 
-    </footer>
 
 
-    <!-- ==================================================
-         IMPORTANT:
-         CONFIG MUST LOAD BEFORE YOUTUBE.JS
-    =================================================== -->
+<!-- ================= ABOUT ================= -->
 
-    <script src="config.js"></script>
-    <script src="youtube.js"></script>
+<section
+class="about"
+id="about"
+>
+
+<div class="container about-grid">
+
+
+<div class="about-logo">
+
+<img
+src="logo.jpeg"
+alt="Crazy Indian Parv Logo"
+>
+
+</div>
+
+
+<div>
+
+<div class="badge">
+ABOUT THE CHANNEL
+</div>
+
+
+<h2 class="section-title">
+MAKE. TEST. INVENT.
+</h2>
+
+
+<p>
+
+Crazy Indian Parv is focused on inventions,
+experiments, electronics, DIY builds and useful ideas.
+
+</p>
+
+
+<p>
+
+The goal is simple:
+try something new, learn from the experiment
+and share the result.
+
+</p>
+
+
+<a
+class="btn btn-yellow"
+href="https://www.youtube.com/@crazyindianparv"
+target="_blank"
+rel="noopener"
+>
+Visit YouTube Channel
+</a>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- ================= SHORTS ================= -->
+
+<section id="shorts">
+
+<div class="container">
+
+
+<h2 class="section-title">
+YouTube Shorts
+</h2>
+
+
+<p class="section-text">
+
+Quick experiments, ideas and interesting moments
+from Crazy Indian Parv.
+
+</p>
+
+
+<div class="shorts-grid">
+
+
+<article class="short-card">
+
+<div class="short-visual">
+
+<span>
+SHORTS / 01
+</span>
+
+<a
+class="short-play"
+href="https://www.youtube.com/@crazyindianparv/shorts"
+target="_blank"
+rel="noopener"
+>
+▶
+</a>
+
+</div>
+
+
+<div class="short-info">
+
+<h3>
+Experiments
+</h3>
+
+<p>
+Quick experiment clips and interesting results.
+</p>
+
+<a
+class="short-btn"
+href="https://www.youtube.com/@crazyindianparv/shorts"
+target="_blank"
+rel="noopener"
+>
+▶ Watch Shorts
+</a>
+
+</div>
+
+</article>
+
+
+
+<article class="short-card">
+
+<div class="short-visual">
+
+<span>
+SHORTS / 02
+</span>
+
+<a
+class="short-play"
+href="https://www.youtube.com/@crazyindianparv/shorts"
+target="_blank"
+rel="noopener"
+>
+▶
+</a>
+
+</div>
+
+
+<div class="short-info">
+
+<h3>
+DIY Ideas
+</h3>
+
+<p>
+Short practical ideas, builds and useful tips.
+</p>
+
+<a
+class="short-btn"
+href="https://www.youtube.com/@crazyindianparv/shorts"
+target="_blank"
+rel="noopener"
+>
+▶ Watch Shorts
+</a>
+
+</div>
+
+</article>
+
+
+
+<article class="short-card">
+
+<div class="short-visual">
+
+<span>
+SHORTS / 03
+</span>
+
+<a
+class="short-play"
+href="https://www.youtube.com/@crazyindianparv/shorts"
+target="_blank"
+rel="noopener"
+>
+▶
+</a>
+
+</div>
+
+
+<div class="short-info">
+
+<h3>
+New Inventions
+</h3>
+
+<p>
+Explore quick clips from the world of new inventions.
+</p>
+
+<a
+class="short-btn"
+href="https://www.youtube.com/@crazyindianparv/shorts"
+target="_blank"
+rel="noopener"
+>
+▶ Watch Shorts
+</a>
+
+</div>
+
+</article>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ================= CTA ================= -->
+
+<section>
+
+<div class="container">
+
+
+<div class="cta">
+
+
+<div class="badge">
+STAY CONNECTED
+</div>
+
+
+<h2 class="section-title">
+FOLLOW CRAZY INDIAN PARV
+</h2>
+
+
+<p>
+
+Watch new inventions, experiments, DIY projects
+and Shorts on our YouTube channel.
+
+</p>
+
+
+<div class="buttons">
+
+
+<a
+class="btn btn-yellow"
+href="https://www.youtube.com/@crazyindianparv"
+target="_blank"
+rel="noopener"
+>
+▶ Visit YouTube Channel
+</a>
+
+
+<a
+class="btn btn-outline"
+href="https://www.youtube.com/@crazyindianparv?sub_confirmation=1"
+target="_blank"
+rel="noopener"
+>
+▶ Subscribe
+</a>
+
+
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- ================= CONTACT ================= -->
+
+<section id="contact">
+
+<div class="container">
+
+
+<div class="contact-grid">
+
+
+<div>
+
+<div class="badge">
+GET IN TOUCH
+</div>
+
+
+<h2 class="section-title">
+LET'S CONNECT.
+</h2>
+
+
+<p class="contact-intro">
+
+Have an idea, question or feedback about Crazy Indian Parv?
+Connect through the official YouTube channel or send an email.
+
+</p>
+
+
+<div class="buttons">
+
+
+<!-- GMAIL COMPOSE BUTTON -->
+
+<a
+class="btn btn-yellow"
+href="https://mail.google.com/mail/?view=cm&fs=1&to=sumitparv923@gmail.com"
+target="_blank"
+rel="noopener noreferrer"
+>
+✉ Send Email
+</a>
+
+
+<a
+class="btn btn-outline"
+href="https://www.youtube.com/@crazyindianparv/videos"
+target="_blank"
+rel="noopener"
+>
+🎬 Watch Videos
+</a>
+
+
+</div>
+
+</div>
+
+
+
+<div class="contact-box">
+
+
+<!-- EMAIL -->
+
+<div class="contact-row">
+
+<span class="contact-icon">
+✉
+</span>
+
+
+<div>
+
+<small>
+EMAIL
+</small>
+
+
+<a
+class="email-address"
+href="https://mail.google.com/mail/?view=cm&fs=1&to=sumitparv923@gmail.com"
+target="_blank"
+rel="noopener noreferrer"
+>
+sumitparv923@gmail.com
+</a>
+
+
+<a
+href="https://mail.google.com/mail/?view=cm&fs=1&to=sumitparv923@gmail.com"
+target="_blank"
+rel="noopener noreferrer"
+>
+Send Email →
+</a>
+
+</div>
+
+</div>
+
+
+
+<!-- YOUTUBE -->
+
+<div class="contact-row">
+
+<span class="contact-icon">
+▶
+</span>
+
+
+<div>
+
+<small>
+YOUTUBE
+</small>
+
+
+<strong>
+Crazy Indian Parv
+</strong>
+
+
+<a
+href="https://www.youtube.com/@crazyindianparv"
+target="_blank"
+rel="noopener"
+>
+Visit Channel →
+</a>
+
+</div>
+
+</div>
+
+
+
+<!-- VIDEOS -->
+
+<div class="contact-row">
+
+<span class="contact-icon">
+🎬
+</span>
+
+
+<div>
+
+<small>
+VIDEOS
+</small>
+
+
+<strong>
+Experiments & Inventions
+</strong>
+
+
+<a
+href="https://www.youtube.com/@crazyindianparv/videos"
+target="_blank"
+rel="noopener"
+>
+View Videos →
+</a>
+
+</div>
+
+</div>
+
+
+
+<!-- SHORTS -->
+
+<div class="contact-row">
+
+<span class="contact-icon">
+⚡
+</span>
+
+
+<div>
+
+<small>
+SHORTS
+</small>
+
+
+<strong>
+Quick Ideas & Builds
+</strong>
+
+
+<a
+href="https://www.youtube.com/@crazyindianparv/shorts"
+target="_blank"
+rel="noopener"
+>
+View Shorts →
+</a>
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+</main>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+<div class="container footer">
+
+
+<div>
+
+©
+<span id="year"></span>
+Crazy Indian Parv
+
+</div>
+
+
+<a
+href="https://www.youtube.com/@crazyindianparv"
+target="_blank"
+rel="noopener"
+>
+YouTube
+</a>
+
+
+</div>
+
+</footer>
+
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script src="config.js"></script>
+
+<script src="youtube.js"></script>
+
+
+<script>
+
+document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+
+const menu =
+    document.getElementById("menu");
+
+
+const nav =
+    document.getElementById("nav");
+
+
+menu.onclick = function(){
+
+    nav.classList.toggle("open");
+
+    menu.textContent =
+        nav.classList.contains("open")
+        ? "✕"
+        : "☰";
+
+};
+
+
+nav.querySelectorAll("a").forEach(
+    function(link){
+
+        link.onclick = function(){
+
+            nav.classList.remove("open");
+
+            menu.textContent = "☰";
+
+        };
+
+    }
+);
+
+</script>
+
 
 </body>
-
 </html>
