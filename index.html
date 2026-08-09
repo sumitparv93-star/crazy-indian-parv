@@ -3,8 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Crazy Indian Parv - Make New Invention">
-<title>Crazy Indian Parv | Make New Invention</title>
+<meta name="description" content="Crazy Indian Parv is the official website for inventions, experiments, DIY projects, practical ideas, YouTube videos and Shorts.">
+<meta name="keywords" content="Crazy Indian Parv, inventions, experiments, DIY projects, new invention, practical ideas, YouTube Shorts">
+<meta name="author" content="Crazy Indian Parv">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Crazy Indian Parv | Make New Invention">
+<meta property="og:description" content="Discover inventions, experiments, DIY projects, practical ideas, YouTube videos and Shorts from Crazy Indian Parv.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sumitparv93-star.github.io/crazy-indian-parv/">
+<title>Crazy Indian Parv | Inventions, DIY & Experiments</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
 body{background:#050505;color:#fff;font-family:Arial,Helvetica,sans-serif;overflow-x:hidden}
@@ -71,7 +78,7 @@ footer{border-top:1px solid #ffffff14;padding:35px 0;color:#888}.footer{display:
 .contact-icon{width:48px;height:48px;flex:none;display:grid;place-items:center;border-radius:12px;background:#ffd21c;color:#050505;font-weight:900}
 .contact-row div{display:flex;flex-direction:column;gap:5px}
 .contact-row small{font-size:10px;letter-spacing:2px;color:#ffd21c;font-weight:900}
-.contact-row strong{font-size:17px}
+.contact-row strong{font-size:17px}.contact-row .email-address{display:block;color:#fff;font-size:17px;font-weight:800;text-decoration:none}.contact-row .email-address:hover{color:#ffd21c}
 .contact-row a{color:#999;font-size:13px;font-weight:800}
 .contact-row a:hover{color:#ffd21c}
 @media(max-width:850px){.contact-grid{grid-template-columns:1fr}.contact-box{padding:5px 18px}}
@@ -135,6 +142,20 @@ footer{border-top:1px solid #ffffff14;padding:35px 0;color:#888}.footer{display:
 <div class="video-note">These Shorts cards are ready for real YouTube content. We will connect the YouTube API later so actual Shorts can load automatically.</div>
 </div></section>
 
+<section class="traffic-cta">
+<div class="container">
+<div class="cta">
+<div class="badge">STAY CONNECTED</div>
+<h2 class="section-title">FOLLOW CRAZY INDIAN PARV</h2>
+<p>Watch new inventions, experiments, DIY projects and Shorts on our YouTube channel.</p>
+<div class="buttons">
+<a class="btn btn-yellow" href="https://www.youtube.com/@crazyindianparv" target="_blank" rel="noopener">▶ Visit YouTube Channel</a>
+<a class="btn btn-outline" href="https://www.youtube.com/@crazyindianparv?sub_confirmation=1" target="_blank" rel="noopener">▶ Subscribe</a>
+</div>
+</div>
+</div>
+</section>
+
 <section id="contact"><div class="container">
 <div class="contact-grid">
 <div>
@@ -147,7 +168,7 @@ footer{border-top:1px solid #ffffff14;padding:35px 0;color:#888}.footer{display:
 </div>
 </div>
 <div class="contact-box">
-<div class="contact-row"><span class="contact-icon">✉</span><div><small>EMAIL</small><strong>sumitparv923@gmail.com</strong><a href="mailto:sumitparv923@gmail.com">Send Email →</a></div></div>
+<div class="contact-row"><span class="contact-icon">✉</span><div><small>EMAIL</small><a class="email-address" href="https://mail.google.com/mail/?view=cm&fs=1&to=sumitparv923@gmail.com" target="_blank" rel="noopener">sumitparv923@gmail.com</a><a href="https://mail.google.com/mail/?view=cm&fs=1&to=sumitparv923@gmail.com" target="_blank" rel="noopener">Send Email →</a></div></div>
 <div class="contact-row"><span class="contact-icon">▶</span><div><small>YOUTUBE</small><strong>Crazy Indian Parv</strong><a href="https://www.youtube.com/@crazyindianparv" target="_blank" rel="noopener">Visit Channel →</a></div></div>
 <div class="contact-row"><span class="contact-icon">🎬</span><div><small>VIDEOS</small><strong>Experiments & Inventions</strong><a href="https://www.youtube.com/@crazyindianparv/videos" target="_blank" rel="noopener">View Videos →</a></div></div>
 <div class="contact-row"><span class="contact-icon">⚡</span><div><small>SHORTS</small><strong>Quick Ideas & Builds</strong><a href="https://www.youtube.com/@crazyindianparv/shorts" target="_blank" rel="noopener">View Shorts →</a></div></div>
@@ -156,6 +177,8 @@ footer{border-top:1px solid #ffffff14;padding:35px 0;color:#888}.footer{display:
 </div></section>
 </main>
 <footer><div class="container footer"><div>© <span id="year"></span> Crazy Indian Parv</div><a href="https://www.youtube.com/@crazyindianparv" target="_blank" rel="noopener">YouTube</a></div></footer>
+<script src="config.js"></script>
+<script src="youtube.js"></script>
 <script>
 document.getElementById("year").textContent=new Date().getFullYear();
 const menu=document.getElementById("menu"),nav=document.getElementById("nav");
