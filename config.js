@@ -72,7 +72,6 @@ const SITE_CONFIG = {
             "https://www.youtube.com/@crazyindianparv"
 
     }
-
 };
 
 
