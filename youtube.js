@@ -1,269 +1,160 @@
 /* =========================================================
    CRAZY INDIAN PARV
    YOUTUBE VIDEO SYSTEM
+   NORMAL VIDEOS ONLY
    ========================================================= */
 
 (function () {
-
     "use strict";
-
-
-    /* =====================================================
-       CONFIG CHECK
-       ===================================================== */
 
     const config = window.SITE_CONFIG;
 
     if (!config) {
-
-        console.warn(
-            "Crazy Indian Parv: SITE_CONFIG not found."
-        );
-
+        console.error("Crazy Indian Parv: config.js not found.");
         return;
     }
 
+    const youtube = config.youtube || {};
 
-    /* =====================================================
-       SETTINGS
-       ===================================================== */
+    const API_ENABLED = youtube.enabled === true;
+    const API_KEY = youtube.apiKey || "";
+    const CHANNEL_ID = youtube.channelId || "";
+    const MAX_RESULTS = 6;
 
-    const youtubeSettings =
-        config.youtube || {};
-
-    const API_ENABLED =
-        youtubeSettings.enabled === true;
-
-    const API_KEY =
-        youtubeSettings.apiKey || "";
-
-    const CHANNEL_ID =
-        youtubeSettings.channelId || "";
-
-    const MAX_RESULTS =
-        youtubeSettings.maxResults || 6;
-
-
-    /* =====================================================
-       VIDEO SECTION
-       ===================================================== */
-
-    const videoGrid =
-        document.querySelector(".video-grid");
+    const videoGrid = document.querySelector(".video-grid");
 
     if (!videoGrid) {
+        console.error("Crazy Indian Parv: .video-grid not found.");
         return;
     }
 
 
-    /* =====================================================
-       API NOT ENABLED
-       ===================================================== */
-
-    if (
-        !API_ENABLED ||
-        !API_KEY ||
-        !CHANNEL_ID
-    ) {
-
-        console.log(
-            "Crazy Indian Parv: YouTube API is currently disabled."
-        );
-
-        return;
-    }
-
-
-    /* =====================================================
+    /* =========================================================
        LOAD VIDEOS
-       ===================================================== */
+       ========================================================= */
 
     async function loadVideos() {
 
+        if (!API_ENABLED || !API_KEY || !CHANNEL_ID) {
+            showMessage("YouTube API settings are incomplete.");
+            return;
+        }
+
         try {
 
-            const url =
+            /* STEP 1: Get latest videos */
+
+            const searchUrl =
                 "https://www.googleapis.com/youtube/v3/search" +
                 "?part=snippet" +
-                "&channelId=" +
-                encodeURIComponent(CHANNEL_ID) +
+                "&channelId=" + encodeURIComponent(CHANNEL_ID) +
                 "&maxResults=20" +
                 "&order=date" +
                 "&type=video" +
-                "&key=" +
-                encodeURIComponent(API_KEY);
+                "&key=" + encodeURIComponent(API_KEY);
 
 
-            const response =
-                await fetch(url);
+            const searchResponse = await fetch(searchUrl);
+            const searchData = await searchResponse.json();
 
 
-            if (!response.ok) {
-
-                throw new Error(
-                    "YouTube API request failed."
-                );
-
-            }
-
-
-            const data =
-                await response.json();
-
-
-            if (
-                !data.items ||
-                !data.items.length
-            ) {
-
-                console.warn(
-                    "No YouTube videos found."
-                );
-
+            if (!searchResponse.ok) {
+                console.error("YouTube Search API error:", searchData);
+                showMessage("YouTube videos could not be loaded.");
                 return;
             }
 
 
-            /*
-             * Search API can return Shorts as normal videos.
-             * We first collect the latest results, then use
-             * video details to check their duration.
-             */
-
-            const videoIds =
-                data.items
-                    .filter(function (item) {
-
-                        return (
-                            item.id &&
-                            item.id.videoId
-                        );
-
-                    })
-                    .map(function (item) {
-
-                        return item.id.videoId;
-
-                    });
+            const items = Array.isArray(searchData.items)
+                ? searchData.items.filter(function (item) {
+                    return item.id && item.id.videoId;
+                })
+                : [];
 
 
-            if (!videoIds.length) {
-
-                console.warn(
-                    "No valid YouTube videos found."
-                );
-
+            if (items.length === 0) {
+                showMessage("No YouTube videos were found.");
                 return;
             }
+
+
+            /* =====================================================
+               STEP 2: Get video details
+               This lets us remove Shorts / very short videos.
+               ===================================================== */
+
+            const videoIds = items.map(function (item) {
+                return item.id.videoId;
+            });
 
 
             const detailsUrl =
                 "https://www.googleapis.com/youtube/v3/videos" +
-                "?part=contentDetails" +
-                "&id=" +
-                encodeURIComponent(
-                    videoIds.join(",")
-                ) +
-                "&key=" +
-                encodeURIComponent(API_KEY);
+                "?part=snippet,contentDetails" +
+                "&id=" + encodeURIComponent(videoIds.join(",")) +
+                "&key=" + encodeURIComponent(API_KEY);
 
 
-            const detailsResponse =
-                await fetch(detailsUrl);
+            const detailsResponse = await fetch(detailsUrl);
+            const detailsData = await detailsResponse.json();
 
 
             if (!detailsResponse.ok) {
-
-                throw new Error(
-                    "YouTube video details request failed."
-                );
-
+                console.error("YouTube Videos API error:", detailsData);
+                showMessage("YouTube videos could not be loaded.");
+                return;
             }
 
 
-            const detailsData =
-                await detailsResponse.json();
+            const details = Array.isArray(detailsData.items)
+                ? detailsData.items
+                : [];
 
 
-            /*
-             * Create a map of video ID -> duration.
-             */
+            /* =====================================================
+               NORMAL VIDEO FILTER
 
-            const durationMap = {};
+               Videos of 60 seconds or less are excluded.
+               ===================================================== */
 
+            const normalVideos = details.filter(function (video) {
 
-            (detailsData.items || []).forEach(
-                function (item) {
-
-                    if (
-                        item.id &&
-                        item.contentDetails &&
-                        item.contentDetails.duration
-                    ) {
-
-                        durationMap[item.id] =
-                            item.contentDetails.duration;
-
-                    }
-
+                if (!video.contentDetails) {
+                    return false;
                 }
-            );
+
+                const duration =
+                    parseDuration(video.contentDetails.duration);
+
+                return duration > 60;
+            });
 
 
-            /*
-             * Remove Shorts.
-             *
-             * Shorts are normally 60 seconds or less.
-             * We keep videos longer than 60 seconds.
-             */
-
-            const normalVideos =
-                data.items.filter(
-                    function (item) {
-
-                        if (
-                            !item.id ||
-                            !item.id.videoId
-                        ) {
-
-                            return false;
-
-                        }
+            if (normalVideos.length === 0) {
+                showMessage("No normal YouTube videos were found.");
+                return;
+            }
 
 
-                        const duration =
-                            durationMap[
-                                item.id.videoId
-                            ];
+            /* Keep original newest order */
 
+            const orderedVideos = [];
 
-                        if (!duration) {
-                            return false;
-                        }
+            items.forEach(function (searchItem) {
 
+                const found = normalVideos.find(function (video) {
+                    return video.id === searchItem.id.videoId;
+                });
 
-                        const seconds =
-                            parseISO8601Duration(
-                                duration
-                            );
+                if (found) {
+                    orderedVideos.push(found);
+                }
 
+            });
 
-                        return seconds > 60;
-
-                    }
-                );
-
-
-            /*
-             * Show only the requested number of
-             * normal videos.
-             */
 
             renderVideos(
-                normalVideos.slice(
-                    0,
-                    MAX_RESULTS
-                )
+                orderedVideos.slice(0, MAX_RESULTS)
             );
 
 
@@ -274,142 +165,30 @@
                 error
             );
 
+            showMessage("YouTube videos could not be loaded.");
         }
-
     }
 
 
-    /* =====================================================
-       RENDER VIDEOS
-       ===================================================== */
+    /* =========================================================
+       CONVERT YOUTUBE ISO DURATION TO SECONDS
 
-    function renderVideos(items) {
+       Example: PT5M20S = 320 seconds
+       ========================================================= */
 
-        videoGrid.innerHTML = "";
-
-
-        items.forEach(function (item) {
-
-            if (
-                !item.id ||
-                !item.id.videoId
-            ) {
-
-                return;
-            }
-
-
-            const videoId =
-                item.id.videoId;
-
-
-            const title =
-                item.snippet?.title ||
-                "Crazy Indian Parv";
-
-
-            const description =
-                item.snippet?.description ||
-                "Watch this video on YouTube.";
-
-
-            const thumbnail =
-                item.snippet?.thumbnails?.high?.url ||
-                item.snippet?.thumbnails?.medium?.url ||
-                item.snippet?.thumbnails?.default?.url;
-
-
-            const videoUrl =
-                "https://www.youtube.com/watch?v=" +
-                encodeURIComponent(videoId);
-
-
-            const card =
-                document.createElement("article");
-
-
-            card.className =
-                "video-card";
-
-
-            card.innerHTML = `
-
-                <a
-                    href="${videoUrl}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-
-                    <div
-                        class="video-thumbnail"
-                        style="
-                            background-image:
-                            url('${thumbnail}');
-                            background-size: cover;
-                            background-position: center;
-                            aspect-ratio: 16 / 9;
-                            min-height: 220px;
-                            width: 100%;
-                        "
-                    >
-
-                        <div class="play-button">
-                            ▶
-                        </div>
-
-                    </div>
-
-
-                    <div class="video-info">
-
-                        <h3>
-                            ${escapeHtml(title)}
-                        </h3>
-
-                        <p>
-                            ${escapeHtml(
-                                shortenText(
-                                    description,
-                                    80
-                                )
-                            )}
-                        </p>
-
-                    </div>
-
-                </a>
-
-            `;
-
-
-            videoGrid.appendChild(card);
-
-        });
-
-    }
-
-
-    /* =====================================================
-       ISO 8601 DURATION
-       ===================================================== */
-
-    function parseISO8601Duration(duration) {
+    function parseDuration(duration) {
 
         if (!duration) {
             return 0;
         }
 
-
-        const match =
-            duration.match(
-                /PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/
-            );
-
+        const match = duration.match(
+            /PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/
+        );
 
         if (!match) {
             return 0;
         }
-
 
         const hours =
             parseInt(match[1] || "0", 10);
@@ -420,38 +199,232 @@
         const seconds =
             parseInt(match[3] || "0", 10);
 
-
         return (
             hours * 3600 +
             minutes * 60 +
             seconds
         );
-
     }
 
 
-    /* =====================================================
-       TEXT SECURITY
-       ===================================================== */
+    /* =========================================================
+       RENDER VIDEOS
+       ========================================================= */
 
-    function escapeHtml(text) {
+    function renderVideos(items) {
 
-        const div =
+        videoGrid.innerHTML = "";
+
+        items.forEach(function (item) {
+
+            const videoId = item.id;
+
+            const snippet =
+                item.snippet || {};
+
+
+            const title =
+                snippet.title ||
+                "Crazy Indian Parv";
+
+
+            const description =
+                snippet.description ||
+                "Watch this video on YouTube.";
+
+
+            const thumbnail =
+                (
+                    snippet.thumbnails &&
+                    snippet.thumbnails.high &&
+                    snippet.thumbnails.high.url
+                ) ||
+
+                (
+                    snippet.thumbnails &&
+                    snippet.thumbnails.medium &&
+                    snippet.thumbnails.medium.url
+                ) ||
+
+                (
+                    snippet.thumbnails &&
+                    snippet.thumbnails.default &&
+                    snippet.thumbnails.default.url
+                );
+
+
+            const videoUrl =
+                "https://www.youtube.com/watch?v=" +
+                encodeURIComponent(videoId);
+
+
+            /* =================================================
+               CARD
+               ================================================= */
+
+            const card =
+                document.createElement("article");
+
+            card.className = "video-card";
+
+
+            /* =================================================
+               LINK
+               ================================================= */
+
+            const link =
+                document.createElement("a");
+
+            link.href = videoUrl;
+
+            link.target = "_blank";
+
+            link.rel =
+                "noopener noreferrer";
+
+
+            link.style.textDecoration =
+                "none";
+
+            link.style.color =
+                "inherit";
+
+            link.style.display =
+                "block";
+
+
+            /* =================================================
+               THUMBNAIL
+               ================================================= */
+
+            const thumbnailBox =
+                document.createElement("div");
+
+            thumbnailBox.className =
+                "video-thumbnail";
+
+
+            if (thumbnail) {
+
+                thumbnailBox.style.backgroundImage =
+                    "url('" +
+                    thumbnail.replace(/'/g, "%27") +
+                    "')";
+
+                thumbnailBox.style.backgroundSize =
+                    "cover";
+
+                thumbnailBox.style.backgroundPosition =
+                    "center";
+            }
+
+
+            /* =================================================
+               PLAY BUTTON
+               ================================================= */
+
+            const playButton =
+                document.createElement("div");
+
+            playButton.className =
+                "play-button";
+
+            playButton.textContent =
+                "▶";
+
+
+            /* =================================================
+               VIDEO INFORMATION
+               ================================================= */
+
+            const info =
+                document.createElement("div");
+
+            info.className =
+                "video-info";
+
+
+            const heading =
+                document.createElement("h3");
+
+            heading.textContent =
+                title;
+
+
+            const paragraph =
+                document.createElement("p");
+
+            paragraph.textContent =
+                shortenText(
+                    description,
+                    120
+                );
+
+
+            info.appendChild(heading);
+
+            info.appendChild(paragraph);
+
+
+            thumbnailBox.appendChild(
+                playButton
+            );
+
+
+            link.appendChild(
+                thumbnailBox
+            );
+
+            link.appendChild(
+                info
+            );
+
+
+            card.appendChild(
+                link
+            );
+
+
+            videoGrid.appendChild(
+                card
+            );
+
+        });
+    }
+
+
+    /* =========================================================
+       ERROR / MESSAGE
+       ========================================================= */
+
+    function showMessage(message) {
+
+        videoGrid.innerHTML = "";
+
+        const box =
             document.createElement("div");
 
+        box.className =
+            "video-api-message";
 
-        div.textContent =
-            text || "";
+        box.textContent =
+            message;
 
+        box.style.padding =
+            "20px";
 
-        return div.innerHTML;
+        box.style.textAlign =
+            "center";
 
+        videoGrid.appendChild(
+            box
+        );
     }
 
 
-    /* =====================================================
-       SHORT DESCRIPTION
-       ===================================================== */
+    /* =========================================================
+       SHORTEN DESCRIPTION
+       ========================================================= */
 
     function shortenText(
         text,
@@ -462,31 +435,26 @@
             return "";
         }
 
-
-        if (
-            text.length <= maxLength
-        ) {
-
+        if (text.length <= maxLength) {
             return text;
-
         }
 
-
         return (
-            text.substring(
-                0,
-                maxLength
-            ).trim() + "..."
+            text
+                .substring(
+                    0,
+                    maxLength
+                )
+                .trim() +
+            "..."
         );
-
     }
 
 
-    /* =====================================================
+    /* =========================================================
        START
-       ===================================================== */
+       ========================================================= */
 
     loadVideos();
-
 
 })();
