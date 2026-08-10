@@ -53,7 +53,7 @@ const SITE_CONFIG = {
 
         enabled: true,
 
-        apiKey: "AIzaSyBLy5Zb01ywMvU7r3UDkDyQeme6gcQKI48",
+        apiKey: "",
 
         channelId: "UCJNZF0bqIy2adUbHGoGLRiw",
 
