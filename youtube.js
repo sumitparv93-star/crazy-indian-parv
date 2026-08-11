@@ -1,17 +1,13 @@
 /* =========================================================
    CRAZY INDIAN PARV
-   YOUTUBE API
-   API KEY IS NOT STORED HERE
+   YOUTUBE VIDEOS
+   API KEY NEVER STORED IN WEBSITE
    ========================================================= */
 
 (function () {
 
     const WORKER_URL =
         "https://crazy-indian-parv-api.sumitparv923.workers.dev";
-
-    /* ===============================
-       GET CONFIG
-       =============================== */
 
     const config = window.SITE_CONFIG;
 
@@ -22,42 +18,44 @@
 
 
     /* ===============================
-       LOAD LATEST VIDEOS
+       LOAD VIDEOS
        =============================== */
 
     async function loadLatestVideos() {
 
+        const container =
+            document.getElementById("youtube-videos");
+
+        if (!container) {
+            console.error("youtube-videos container not found.");
+            return;
+        }
+
         try {
 
             const params = new URLSearchParams({
-
                 part: "snippet",
-
                 channelId: config.youtube.channelId,
-
                 order: "date",
-
                 type: "video",
-
                 maxResults: String(
                     config.youtube.maxResults || 6
                 )
-
             });
 
 
             const response = await fetch(
-                WORKER_URL + "/search?" + params.toString()
+                WORKER_URL +
+                "/search?" +
+                params.toString()
             );
 
 
             if (!response.ok) {
-
                 throw new Error(
                     "YouTube API request failed: " +
                     response.status
                 );
-
             }
 
 
@@ -65,12 +63,12 @@
 
 
             console.log(
-                "Crazy Indian Parv YouTube Data:",
+                "Crazy Indian Parv videos:",
                 data
             );
 
 
-            return data;
+            renderVideos(data.items || []);
 
 
         } catch (error) {
@@ -80,9 +78,13 @@
                 error
             );
 
-            return {
-                items: []
-            };
+
+            container.innerHTML = `
+                <div class="video-loading">
+                    Unable to load latest videos.
+                    Please try again later.
+                </div>
+            `;
 
         }
 
@@ -90,77 +92,201 @@
 
 
     /* ===============================
-       GET VIDEO DETAILS
+       RENDER VIDEOS
        =============================== */
 
-    async function getVideoDetails(videoIds) {
+    function renderVideos(items) {
 
-        if (!videoIds || videoIds.length === 0) {
-            return {
-                items: []
-            };
+        const container =
+            document.getElementById("youtube-videos");
+
+
+        if (!container) {
+            return;
         }
 
 
-        try {
+        if (!items.length) {
 
-            const params = new URLSearchParams({
+            container.innerHTML = `
+                <div class="video-loading">
+                    No videos found.
+                </div>
+            `;
 
-                part: "snippet,contentDetails,statistics",
-
-                id: videoIds.join(",")
-
-            });
-
-
-            const response = await fetch(
-                WORKER_URL + "/videos?" + params.toString()
-            );
+            return;
+        }
 
 
-            if (!response.ok) {
+        container.innerHTML = "";
 
-                throw new Error(
-                    "Video details request failed: " +
-                    response.status
-                );
 
+        items.forEach(function (item) {
+
+            const videoId =
+                item.id &&
+                item.id.videoId;
+
+
+            if (!videoId) {
+                return;
             }
 
 
-            const data = await response.json();
+            const snippet =
+                item.snippet || {};
 
 
-            return data;
+            const title =
+                snippet.title || "Crazy Indian Parv";
 
 
-        } catch (error) {
+            const description =
+                snippet.description || "";
 
-            console.error(
-                "Video details error:",
-                error
-            );
 
-            return {
-                items: []
-            };
+            const thumbnail =
+                snippet.thumbnails &&
+                (
+                    snippet.thumbnails.high ||
+                    snippet.thumbnails.medium ||
+                    snippet.thumbnails.default
+                );
 
-        }
+
+            const thumbnailUrl =
+                thumbnail
+                ? thumbnail.url
+                : "";
+
+
+            const card =
+                document.createElement("article");
+
+
+            card.className = "video-card";
+
+
+            card.innerHTML = `
+
+                <a
+                    href="https://www.youtube.com/watch?v=${videoId}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+
+                    <div
+                        class="video-thumbnail"
+                        style="
+                            background-image:
+                            url('${thumbnailUrl}');
+                        "
+                    >
+
+                        <div class="play-button">
+                            ▶
+                        </div>
+
+                    </div>
+
+                </a>
+
+
+                <div class="video-info">
+
+                    <h3>
+                        ${escapeHtml(title)}
+                    </h3>
+
+                    <p>
+                        ${escapeHtml(
+                            shortenText(description, 120)
+                        )}
+                    </p>
+
+                </div>
+
+            `;
+
+
+            container.appendChild(card);
+
+        });
 
     }
 
 
     /* ===============================
-       MAKE FUNCTIONS AVAILABLE
+       SHORTEN DESCRIPTION
+       =============================== */
+
+    function shortenText(text, maxLength) {
+
+        if (!text) {
+            return "";
+        }
+
+
+        if (text.length <= maxLength) {
+            return text;
+        }
+
+
+        return text.substring(0, maxLength) + "...";
+
+    }
+
+
+    /* ===============================
+       HTML SECURITY
+       =============================== */
+
+    function escapeHtml(text) {
+
+        return String(text)
+
+            .replace(/&/g, "&amp;")
+
+            .replace(/</g, "&lt;")
+
+            .replace(/>/g, "&gt;")
+
+            .replace(/"/g, "&quot;")
+
+            .replace(/'/g, "&#039;");
+
+    }
+
+
+    /* ===============================
+       MAKE AVAILABLE
        =============================== */
 
     window.CrazyIndianParvYouTube = {
 
-        loadLatestVideos,
-
-        getVideoDetails
+        loadLatestVideos: loadLatestVideos
 
     };
+
+
+    /* ===============================
+       START AUTOMATICALLY
+       =============================== */
+
+    if (
+        document.readyState === "loading"
+    ) {
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            loadLatestVideos
+        );
+
+    } else {
+
+        loadLatestVideos();
+
+    }
 
 
 })();
